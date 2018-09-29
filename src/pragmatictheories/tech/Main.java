@@ -1,6 +1,10 @@
 package pragmatictheories.tech;
 
-import java.io.*;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class Main {
 
@@ -51,5 +55,9 @@ public class Main {
                 System.out.println(goToPath + "is not a directory.");
             }
         System.out.println("Current directory: "+System.getProperty("user.dir"));
+    }
+
+    static void ping(){
+
     }
 }
