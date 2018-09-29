@@ -8,7 +8,8 @@ public class Main {
 
         ls();
         pwd();
-        cat("/home/ihavenoname/Desktop/LinuxCommandsInJava/LinuxCommandsInJava.iml");
+        cat("/Desktop/LinuxCommandsInJava/LinuxCommandsInJava.iml");
+        cd("Desktop/LinuxCommandsInJava/.git");
 
     }
 
@@ -39,5 +40,16 @@ public class Main {
         } catch (IOException ex) {
             System.out.println(filePath+", file not found.");
         }
+    }
+
+    static void cd(String goToPath){
+            System.out.println("***** cd *****");
+            File dir = new File(goToPath);
+            if (dir.isDirectory() == true) {
+                System.setProperty("user.dir", dir.getAbsolutePath());
+            } else {
+                System.out.println(goToPath + "is not a directory.");
+            }
+        System.out.println("Current directory: "+System.getProperty("user.dir"));
     }
 }
