@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-public class PingCommand {
+public class Ping {
 
 
     public static void main(String[] args) {
