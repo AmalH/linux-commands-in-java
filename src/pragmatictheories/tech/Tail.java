@@ -11,6 +11,25 @@ import java.util.stream.Stream;
 
 public class Tail {
 
+    public static void main(String[] args) throws IOException {
+        int linesLimit=10;
+        if(args[0]!=null)
+            linesLimit=Integer.parseInt(args[0].substring(2));
+        tailFile( FileSystems.getDefault()
+                .getPath("...", "testFile"), linesLimit)
+                .forEach(line -> System.out.println(line));
+    }
+
+    private static final List<String> tailFile(final Path source, final int limit) throws IOException {
+
+        try (Stream<String> stream = Files.lines(source)) {
+            RingBuffer buffer = new RingBuffer(limit);
+            stream.forEach(line -> buffer.collect(line));
+            return buffer.contents();
+        }
+
+    }
+
     private static final class RingBuffer {
 
         private final int limit;
@@ -34,18 +53,5 @@ public class Tail {
 
     }
 
-    public static final List<String> tailFile(final Path source, final int limit) throws IOException {
 
-        try (Stream<String> stream = Files.lines(source)) {
-            RingBuffer buffer = new RingBuffer(limit);
-            stream.forEach(line -> buffer.collect(line));
-
-            return buffer.contents();
-        }
-
-    }
-
-    public static void main(String[] args) throws IOException {
-        tailFile( FileSystems.getDefault().getPath("...", "testFile"), 10).forEach(line -> System.out.println(line));
-    }
 }
