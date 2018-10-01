@@ -6,14 +6,14 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class Main {
+public class VariousCommands {
 
     public static void main(String[] args) {
 
         ls();
         pwd();
-        cat("/Desktop/LinuxCommandsInJava/LinuxCommandsInJava.iml");
-        cd("Desktop/LinuxCommandsInJava/.git");
+        cat("...");
+        cd("...");
 
     }
 
