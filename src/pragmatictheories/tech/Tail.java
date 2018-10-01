@@ -13,10 +13,10 @@ public class Tail {
 
     public static void main(String[] args) throws IOException {
         int linesLimit=10;
-        if(args[0]!=null)
-            linesLimit=Integer.parseInt(args[0].substring(2));
+        //if(args[0]!=null)
+           // linesLimit=Integer.parseInt(args[0].substring(2));
         tailFile( FileSystems.getDefault()
-                .getPath("...", "testFile"), linesLimit)
+                .getPath("/.../...", "testFile"), linesLimit)
                 .forEach(line -> System.out.println(line));
     }
 
