@@ -56,8 +56,4 @@ public class VariousCommands {
             }
         System.out.println("Current directory: "+System.getProperty("user.dir"));
     }
-
-    static void ping(){
-
-    }
 }
