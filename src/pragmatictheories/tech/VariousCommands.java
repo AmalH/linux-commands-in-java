@@ -3,6 +3,10 @@ package pragmatictheories.tech;
 
 import java.io.*;
 import java.nio.file.FileSystemException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
 
 public class VariousCommands {
 
@@ -12,10 +16,12 @@ public class VariousCommands {
         //pwd();
         //cat("/../../sampleFile");
         //cd("/../../sampleFile");
-        //cp("/home/ihavenoname/Desktop/32", "/home/ihavenoname/Desktop/2");
-        mv("/home/ihavenoname/Desktop/a","/home/ihavenoname/Desktop/music");
+        //cp("/..", "/../..");
+        //mv("/../a","/../music");
         /*String[] toEcho={"hi","ammoul","are you here"};
         echo(toEcho);*/
+        String[] dateArgs={"--date","tomorrow"};
+        date(dateArgs);
 
     }
 
@@ -94,8 +100,8 @@ public class VariousCommands {
             File fileToMove = new File(filePath);
             boolean isMoved = fileToMove.renameTo(new File(dst));
             if (!isMoved) {
-                System.out.println("Not moved !");
-                //throw new FileSystemException("src/test/resources/movedFile_jdk6.txt");
+                //System.out.println("Not moved !");
+                throw new FileSystemException("");
             }
         }
     }
@@ -105,9 +111,21 @@ public class VariousCommands {
         System.out.println(String.join(" ", args));
     }
 
-    private static void date() {
+    private static void date(String[] args) {
         System.out.println("**** date ****");
-
+        DateFormat dateFormat = (new SimpleDateFormat("E MMM d HH:mm:ss z Y"));
+        if (args.length==0)
+            System.out.println(dateFormat.format(new Date()));
+        else if(args[0].equals("-u")){
+                dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+                System.out.println(dateFormat.format(new Date()));
+        }
+        else if(args[0].equals("--date")&&args[1].equals("tomorrow")){
+            System.out.println(dateFormat.format(new Date().getTime()+86400000));
+        }
+        else if(args[0].equals("--set")&&args.length>1){ // u could write this better
+            //
+        }
     }
 
 
