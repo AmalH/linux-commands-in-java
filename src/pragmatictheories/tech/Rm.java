@@ -1,18 +1,20 @@
 package pragmatictheories.tech;
 
 import java.io.File;
+import java.util.Scanner;
 
 public class Rm {
 
 
     public static void main(String[] args)  {
 
-        //rm("/home/ihavenoname/Desktop/amal");
-        rmr("/home/ihavenoname/Desktop/LinuxCommandsInJava/bn");
+        //rm("/.../amal");
+        //rmi("../sampleFile");
+        //rmr(...);
     }
 
     /**** rm ****/
-    static void rm(String fileOrDirectoryPath){
+    private static void rm(String fileOrDirectoryPath){
 
         File toRemove = new File(fileOrDirectoryPath);
         if(!toRemove.exists()){
@@ -27,12 +29,11 @@ public class Rm {
                 toRemove.delete();
 
         }
-        System.exit(0);
 
     }
 
     /**** rm -r ****/
-    static void rmr(String directoryPath){
+    private static void rmr(String directoryPath){
 
         File directory = new File(directoryPath);
         if(!directory.exists()){
@@ -43,8 +44,9 @@ public class Rm {
             if (directory.list().length == 0)
                 directory.delete();
             else {
+                System.out.println(directory.list().toString());
                 for (String temp : directory.list()) {
-                    rm(directoryPath+"/"+temp);
+                    (new File(directory, temp)).delete();
                 }
                 if (directory.list().length == 0) {
                     directory.delete();
@@ -53,15 +55,41 @@ public class Rm {
         }
     }
 
+    /**** rm -i ****/
 
-    // force deletion
+    private static void rmi(String directoryPath){
 
-    // recursive deletion
+        File toRemove= new File(directoryPath);
+        Scanner reader = new Scanner(System.in);
 
-    // removing multiple files
+        if(!toRemove.exists()){
 
-    // removing directories
+            System.out.println("rm: cannot remove "+toRemove.getName()+" : No such file or directory");
 
-    // interactive deletion
+        } else {
+
+            if(toRemove.isFile() && toRemove.length()==0)
+                System.out.println("rm: remove regular empty file "+toRemove.getName()+" ? y");
+
+            if(toRemove.isFile() && toRemove.length()>0)
+                System.out.println("rm: remove regular file "+toRemove.getName()+" ? y");
+
+            if(toRemove.isDirectory())
+                System.out.println("rm: remove directory "+toRemove.getName()+" ?");
+
+            if(reader.nextLine().equals("y")){
+                if((new File(directoryPath)).isDirectory())
+                    rmr(directoryPath);
+                if((new File(directoryPath)).isFile())
+                    rm(directoryPath);
+                reader.close();
+            }
+            else
+                reader.close();
+        }
+
+    }
+
+
 
 }

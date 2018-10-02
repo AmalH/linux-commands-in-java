@@ -11,6 +11,7 @@ import java.util.stream.Stream;
 
 public class Tail {
 
+
     public static void main(String[] args) throws IOException {
         int linesLimit=10;
         //if(args[0]!=null)
