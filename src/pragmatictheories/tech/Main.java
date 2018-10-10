@@ -7,25 +7,25 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        //Time.run("ls");
+        //Time.execute("ls");
 
-        //Time.run("pwd");
+        //Time.execute("pwd");
 
-        //Time.run("cat");
+        //Time.execute("cat");
 
-        //Time.run("cd");
+        //Time.execute("cd");
 
-        //Time.run("cp");
+        //Time.execute("cp");
 
-        //Time.run("mv");
+        //Time.execute("mv");
 
-        //Time.run("rm");
+        //Time.execute("rm");
 
-        //Time.run("rmr");
+        //Time.execute("rmr");
 
-        //Time.run("tail");
+        //Time.execute("tail");
 
-        Time.run("date -u");
+        Time.execute("date -u");
     }
 
 

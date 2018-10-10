@@ -69,7 +69,7 @@ public class TestCommands {
     }
 
     /**
-     * cp  // coping files only, i'll fix this
+     * cp
      */
     public static void cp(String src, String dst) throws IOException {
         if (!new File(src).exists())
@@ -232,7 +232,6 @@ public class TestCommands {
      * date
      */
     public static void date(String[] args) {
-        System.out.println("**** date ****");
         DateFormat dateFormat = (new SimpleDateFormat("E MMM d HH:mm:ss z Y"));
         if (args.length == 0)
             System.out.println(dateFormat.format(new Date()));
@@ -282,7 +281,6 @@ public class TestCommands {
      * echo
      */
     public void echo(String[] args) {
-        System.out.println("**** echo ****");
         System.out.println(String.join(" ", args));
     }
 
